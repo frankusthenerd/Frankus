@@ -1,0 +1,217 @@
+/*
+  ==============================================================================
+  Coder Doc Documentation Generator Stylesheet
+  Programmed by Francois Lamini
+  ==============================================================================
+*/
+
+@font-face {
+  font-family: regular;
+  src: url("Regular.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: regular;
+  src: url("Regular_Italic.ttf");
+  font-style: italic;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: regular;
+  src: url("Regular_Bold.ttf");
+  font-style: normal;
+  font-weight: bold;
+}
+
+/* Prevent text highlighting. */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+* {
+  -webkit-user-select: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Set placeholder color. */
+::-webkit-input-placeholder {
+  color: gray;
+}
+
+::-ms-input-placeholder {
+  color: gray;
+}
+
+::-moz-placeholder {
+  color: gray;
+}
+
+::-moz-placeholder {
+  color: gray;
+}
+
+html {
+  width: 100%;
+  height: 100%
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: black;
+  background-color: white;
+  font-family: regular, sans-serif;
+  font-size: 16px;
+}
+
+img, div, canvas {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: optimize-contrast;
+  transform: translateZ(0);
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+pre {
+  margin: 0
+}
+
+code {
+  color: green;
+}
+
+a {
+  text-decoration: none;
+  color: green;
+}
+
+select option {
+  font-size: 20px;
+}
+
+br {
+  clear: both;
+  height: 0;
+}
+
+ul {
+  list-style-type: box;
+  padding: 4px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.container .top_pane {
+  position: absolute;
+  width: 100%;
+  height: 15%;
+}
+
+.container .left_pane {
+  position: absolute;
+  padding: 5px;
+  width: calc(20% - 10px);
+  height: calc(85% - 10px);
+  left: 0;
+  top: 15%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-weight: bold;
+}
+
+.container .right_pane {
+  position: absolute;
+  padding: 5px;
+  width: calc(80% - 10px);
+  height: calc(85% - 10px);
+  left: 20%;
+  top: 15%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.container .bottom_pane {
+  position: absolute;
+  padding: 5px;
+  width: calc(100% - 10px);
+  height: calc(85% - 10px);
+  left: 0;
+  top: 15%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.file_list {
+  padding: 5px;
+  width: calc(100% - 10px);
+}
+
+.banner {
+  background-color: lightblue;
+  color: white;
+  padding: 2px;
+}
+
+.table_head {
+  border: 1px solid navy;
+  color: navy;
+  background-color: beige;
+  padding: 4px;
+  height: 20px;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 20px;
+  width: 170px;
+  float: left;
+}
+
+.table_data {
+  padding: 5px;
+  font-size: 16px;
+  width: 170px;
+  height: 140px;
+  overflow: hidden;
+  float: left;
+}
+
+.parameter {
+  font-weight: bold;
+  color: lightblue;
+}
+
+.return {
+  font-weight: bold;
+  color: black;
+}
+
+.throws {
+  font-weight: bold;
+  color: pink;
+}
+
+.see {
+  font-weight: bold;
+  color: blue;
+}

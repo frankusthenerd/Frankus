@@ -1,0 +1,60 @@
+Project Command:
+  project upload-project <project> <server>
+  project upload-file <file> <server>
+  project download-project <project> <server>
+  project download-file <file> <server>
+
+Compile Command:
+  compile generate-resources <project>
+  compile build-with-cpp <project> <makefile>
+  compile build-electron <project>
+
+Admin Command:
+  admin new-ip-address <ip-address>
+  admin new-request <request>
+  admin new-key <key>
+  admin list-keys
+  admin delete-key <index>
+  admin edit-key <index> <access-level>
+  admin new-permission <pattern> <read-access> <write-access>
+  admin list-permissions
+  admin query-permissions <pattern>
+  admin delete-permission <index>
+  admin edit-permission <index> <read-access> <write-access>
+  admin list-ip-addresses
+  admin delete-ip-address <index>
+  admin delete-request <index>
+  admin list-requests
+
+PNG To Pic Command:
+  png-to-pic list
+  png-to-pic list-pictures <project>
+  png-to-pic list-layers <project> <image>
+  png-to-pic convert-to-pic <project> <image>
+  png-to-pic convert-to-png <project> <image>
+  png-to-pic batch-convert-to-pic <project>
+  png-to-pic batch-convert-to-png <project>
+  png-to-pic change-folder <folder>
+
+Coder Doc Command:
+  coder-doc <project>
+
+Ping Command:
+  ping ping <server> <content-type> <method>
+  ping add <name> <value>
+  ping clear
+  ping delete
+  ping print
+
+Server Command:
+  server <server-name>
+
+Daemon Command:
+  daemon <server-name>
+
+Code Bank Command:
+  code-bank <name> <directory>
+
+Crypt Command:
+  crypt encrypt <name> <password> <salt>
+  crypt decrypt <name> <password> <salt>

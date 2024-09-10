@@ -1,0 +1,16 @@
+object
+compiler=<compiler command>
+output=<output option>
+library=<library option>
+include=<include option>
+end
+<include paths>
+end
+<library paths>
+end
+<libraries>
+end
+<resource maker commands>
+end
+<resources>
+end

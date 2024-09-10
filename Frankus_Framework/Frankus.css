@@ -1,0 +1,286 @@
+/*****************************************************************************/
+/* Frankus Page Stylesheet                                                   */
+/* Programmed by Francois Lamini                                             */
+/*****************************************************************************/
+
+/*****************************************************************************/
+/* Font Loading                                                              */
+/*****************************************************************************/
+
+@font-face {
+  font-family: regular;
+  src: url("Fonts/Regular.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: regular;
+  src: url("Fonts/Regular_Italic.ttf");
+  font-style: italic;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: regular;
+  src: url("Fonts/Regular_Bold.ttf");
+  font-style: normal;
+  font-weight: bold;
+}
+
+/*****************************************************************************/
+/* Anti-selection Implementation                                             */
+/*****************************************************************************/
+
+/* Prevent text highlighting. */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+div, span {
+  -webkit-user-select: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+::-webkit-input-placeholder {
+  color: gray;
+}
+
+::-ms-input-placeholder {
+  color: gray;
+}
+
+::-moz-placeholder {
+  color: gray;
+}
+
+::-moz-placeholder {
+  color: gray;
+}
+
+/*****************************************************************************/
+/* Basic Document Setup                                                      */
+/*****************************************************************************/
+
+html {
+  width: 100%;
+  height: 100%
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: black;
+  font-family: regular, sans-serif;
+  font-size: 16px;
+  background-color: white;
+  overflow: hidden;
+}
+
+img, div, canvas {
+  image-rendering: auto;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+pre {
+  margin: 0
+}
+
+code {
+  color: green;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+select option {
+  font-size: 20px;
+}
+
+br {
+  clear: both;
+  height: 0;
+}
+
+ul {
+  list-style-type: box;
+  padding: 4px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  height: 24px;
+}
+
+input[type="Range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 24px;
+  background-color: silver;
+  border-radius: 4px;
+}
+
+/*****************************************************************************/
+/* Base Container                                                            */
+/*****************************************************************************/
+
+.container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 960px;
+  height: 640px;
+  background-color: white;
+  margin: auto;
+}
+
+/*****************************************************************************/
+/* Wiki Table                                                                */
+/*****************************************************************************/
+
+.table_head {
+  border: 1px solid navy;
+  color: navy;
+  background-color: #F2F3F4;
+  padding: 4px;
+  height: 20px;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 20px;
+  width: 150px;
+  float: left;
+}
+
+.table_data {
+  padding: 5px;
+  font-size: 16px;
+  width: 150px;
+  height: 140px;
+  overflow: hidden;
+  float: left;
+  background-color: ghostwhite;
+}
+
+/*****************************************************************************/
+/* Button                                                                    */
+/*****************************************************************************/
+
+.button {
+  width: 120px;
+  height: 32px;
+  border-radius: 3px;
+  background-color: lightblue;
+  text-align: center;
+  line-height: 32px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+/*****************************************************************************/
+/* Frankus Editor Syntax Highlighting                                        */
+/*****************************************************************************/
+
+.frankus_comment {
+  color: pink;
+  font-style: italic;
+}
+
+.frankus_keyword {
+  font-weight: bold;
+}
+
+.frankus_string {
+  color: green;
+}
+
+.frankus_namespace {
+  color: orange;
+}
+
+.frankus_address {
+  color: blue;
+}
+
+.frankus_comment .frankus_keyword {
+  font-weight: normal;
+}
+
+.frankus_string .frankus_keyword {
+  font-weight: normal;
+}
+
+.frankus_comment .frankus_string {
+  color: green;
+}
+
+.frankus_comment .frankus_namespace {
+  color: orange;
+}
+
+.frankus_comment .frankus_address {
+  color: blue;
+}
+
+/*****************************************************************************/
+/* Layout Debugger                                                           */
+/*****************************************************************************/
+
+.markdown_container {
+  width: 100%;
+  height: 100%;
+}
+
+.markdown_left {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.markdown_left #markdown_editor {
+  width: calc(100% - 10px);
+  height: calc(90% - 10px);
+  padding: 5px;
+  margin: 0;
+  margin-bottom: 10px;
+  color: gray;
+  background-color: ghostwhite;
+  border: 0;
+  font-size: 16px;
+  resize: none;
+}
+
+#markdown_output {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  background-color: white;
+  overflow: scroll;
+}

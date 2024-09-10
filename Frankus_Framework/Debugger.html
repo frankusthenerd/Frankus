@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Layout Debugger</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+    <meta name="viewport" content="width=360, initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="A debugger for the Frankus layout engine." />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" href="Icon.ico" type="image/x-icon" />
+    <style type="text/css">
+      @import url("Frankus.css");
+    </style>
+    <script type="text/javascript" src="Frontend.js"></script>
+    <script type="text/javascript">
+      // ============================================================================
+      // Debugger Code
+      // Programmed by Francois Lamini
+      // ============================================================================
+
+      frankus_layout = new cLayout();
+      frankus_layout.browser.Detect(function() {
+        frankus_layout.Map_Element_Ids();
+        frankus_layout.elements["clear"].addEventListener("click", function(event) {
+          frankus_layout.elements["markdown_editor"].value = "";
+        }, false);
+        frankus_layout.elements["markdown_editor"].addEventListener("keyup", function(event) {
+          let key = event.code;
+          if (!frankus_layout.timer) {
+            frankus_layout.timer = setTimeout(function() {
+              frankus_layout.Parse_Markdown(frankus_layout.elements["markdown_editor"].value, frankus_layout.elements["markdown_output"]);
+              frankus_layout.timer = null;
+            }, 500);
+          }
+        }, false);
+        frankus_layout.elements["markdown_editor"].addEventListener("blur", function(event) {
+          let debugger_code = frankus_layout.elements["markdown_editor"].value;
+          localStorage.setItem("debugger_code", debugger_code);
+        }, false);
+        // Initialize layout.
+        frankus_layout.Init_Grid(960, 640);
+        // Load debugger code.
+        if (localStorage.getItem("debugger_code")) {
+          frankus_layout.elements["markdown_editor"].value = localStorage.getItem("debugger_code");
+        }
+        frankus_layout.Parse_Markdown(frankus_layout.elements["markdown_editor"].value, frankus_layout.elements["markdown_output"]);
+      }, function(error) {
+        console.log("Browser Error: " + error);
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container markdown_container">
+      <form class="markdown_left" action="">
+        <textarea id="markdown_editor" placeholder="Layout code."></textarea>
+        <div id="clear" class="button">Clear</div>
+      </form>
+      <div id="markdown_output"></div>
+    </div>
+  </body>
+</html>
