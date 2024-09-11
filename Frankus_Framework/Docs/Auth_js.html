@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Auth API</title>
+    <style type="text/css">
+      @import url("Coder_Doc.css");
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top_pane">
+        <h1 class="banner">API Documentation :: Auth</h1>
+        <br />
+        <a href="Files.html">Files</a> :: Auth API
+      </div>
+      <div class="left_pane">
+        <a href="#6341757468">cAuth</a><br />
+<a href="#6341757468636F6E7374727563746F72">&nbsp;&nbsp;&rdsh;constructor</a><br />
+<a href="#63417574684C6F61645F4B657973">&nbsp;&nbsp;&rdsh;Load_Keys</a><br />
+<a href="#63417574684C6F61645F5065726D697373696F6E73">&nbsp;&nbsp;&rdsh;Load_Permissions</a><br />
+<a href="#63417574684C6F61645F49505F416464726573736573">&nbsp;&nbsp;&rdsh;Load_IP_Addresses</a><br />
+<a href="#63417574684C6F61645F5265717565737473">&nbsp;&nbsp;&rdsh;Load_Requests</a><br />
+<a href="#634175746856616C69646174655F52657175657374">&nbsp;&nbsp;&rdsh;Validate_Request</a><br />
+<a href="#634175746856616C69646174655F52656D6F74655F436F6E6E656374696F6E">&nbsp;&nbsp;&rdsh;Validate_Remote_Connection</a><br />
+<a href="#6341757468436865636B5F466F725F4261645F526571756573745F5061747465726E">&nbsp;&nbsp;&rdsh;Check_For_Bad_Request_Pattern</a><br />
+      </div>
+      <div class="right_pane">
+        <a name="6341757468"></a> <h1>cAuth</h1><a name="6341757468636F6E7374727563746F72"></a> <h2>constructor()</h2> <br />Creates a new site authorizer.<br /><span class="parameter">server</span> The name of the server.<br /><br /><a name="63417574684C6F61645F4B657973"></a> <h2>Load_Keys(name)</h2> <br />Loads the keys from a file.<br /><span class="parameter">name</span> The name of the file.<br /><span class="throws">throws</span> An error if the key is missing certain fields.<br /><br /><a name="63417574684C6F61645F5065726D697373696F6E73"></a> <h2>Load_Permissions(name)</h2> <br />Loads up the permission patterns.<br /><span class="parameter">name</span> The name of the file to load from.<br /><span class="throws">throws</span> An error if permission is missing something.<br /><br /><a name="63417574684C6F61645F49505F416464726573736573"></a> <h2>Load_IP_Addresses(name)</h2> <br />Loads a list of banned IP addresses.<br /><span class="parameter">name</span> The name of the file to load.<br /><br /><a name="63417574684C6F61645F5265717565737473"></a> <h2>Load_Requests(name)</h2> <br />Loads request patterns from a file.<br /><span class="parameter">name</span> The name of the file.<br /><br /><a name="634175746856616C69646174655F52657175657374"></a> <h2>Validate_Request(url, method, code)</h2> <br />Validates a request.<br /><span class="parameter">url</span> The url from the request.<br /><span class="parameter">method</span> The request method.<br /><span class="parameter">code</span> The access code.<br /><span class="throws">throws</span> An error if the request is invalid.<br /><br /><a name="634175746856616C69646174655F52656D6F74655F436F6E6E656374696F6E"></a> <h2>Validate_Remote_Connection(ip_address)</h2> <br />Checks to see if a remote connection is banned.<br /><span class="parameter">ip_address</span> The IP address of the connection.<br /><span class="throws">throws</span> An error if the IP address if blacklisted.<br /><br /><a name="6341757468436865636B5F466F725F4261645F526571756573745F5061747465726E"></a> <h2>Check_For_Bad_Request_Pattern(url)</h2> <br />Checks for a bad request pattern.<br /><span class="parameter">url</span> The request URL.<br /><span class="throws">throws</span> An error if the request is bad.<br /><br />
+      </div>
+    </div>
+  </body>
+</html>

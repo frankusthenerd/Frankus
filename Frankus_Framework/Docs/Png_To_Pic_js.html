@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Png_To_Pic API</title>
+    <style type="text/css">
+      @import url("Coder_Doc.css");
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top_pane">
+        <h1 class="banner">API Documentation :: Png_To_Pic</h1>
+        <br />
+        <a href="Files.html">Files</a> :: Png_To_Pic API
+      </div>
+      <div class="left_pane">
+        <a href="#63504E475F546F5F50696374757265">cPNG_To_Picture</a><br />
+<a href="#63504E475F546F5F50696374757265636F6E7374727563746F72">&nbsp;&nbsp;&rdsh;constructor</a><br />
+<a href="#63504E475F546F5F506963747572654F6E5F496E74657270726574">&nbsp;&nbsp;&rdsh;On_Interpret</a><br />
+<a href="#63504E475F546F5F5069637475726542617463685F436F6E766572745F546F5F506963">&nbsp;&nbsp;&rdsh;Batch_Convert_To_Pic</a><br />
+<a href="#63504E475F546F5F50696374757265436F6E766572745F546F5F506963">&nbsp;&nbsp;&rdsh;Convert_To_Pic</a><br />
+<a href="#63504E475F546F5F5069637475726547656E65726174655F50696374757265">&nbsp;&nbsp;&rdsh;Generate_Picture</a><br />
+<a href="#63504E475F546F5F50696374757265436F6E766572745F546F5F504E47">&nbsp;&nbsp;&rdsh;Convert_To_PNG</a><br />
+<a href="#63504E475F546F5F5069637475726546696E645F53696D696C61725F436F6C6F72">&nbsp;&nbsp;&rdsh;Find_Similar_Color</a><br />
+      </div>
+      <div class="right_pane">
+        <a name="63504E475F546F5F50696374757265"></a> <h1>cPNG_To_Picture</h1><a name="63504E475F546F5F50696374757265636F6E7374727563746F72"></a> <h2>constructor(argv)</h2> <br />Creates a new PNG to picture converter.<br /><span class="parameter">argv</span> The arguments passed to the script.<br /><br /><a name="63504E475F546F5F506963747572654F6E5F496E74657270726574"></a> <h2>On_Interpret(op, params)</h2> <a name="63504E475F546F5F5069637475726542617463685F436F6E766572745F546F5F506963"></a> <h2>Batch_Convert_To_Pic(project, images, index, on_convert)</h2> <br />Converts an image in a project to a picture.<br /><span class="parameter">project</span> The name of the associated project.<br /><span class="parameter">images</span> The images in the project.<br /><span class="parameter">index</span> The index of the image to convert.<br /><span class="parameter">on_convert</span> Called when the batch is done converting.<br /><br /><a name="63504E475F546F5F50696374757265436F6E766572745F546F5F506963"></a> <h2>Convert_To_Pic(project, image, files, index, on_complete)</h2> <br />Converts a PNG file to PIC format.<br /><span class="parameter">project</span> The name of the associated project.<br /><span class="parameter">image</span> The name of the associated image.<br /><span class="parameter">files</span> The list of PNG files to convert.<br /><span class="parameter">index</span> The index of the file to convert.<br /><span class="parameter">on_complete</span> Called when the conversion is complete.<br /><br /><a name="63504E475F546F5F5069637475726547656E65726174655F50696374757265"></a> <h2>Generate_Picture(project, image, file, width, height, data)</h2> <br />Generates a PIC file.<br /><span class="parameter">project</span> The associated project.<br /><span class="parameter">image</span> The associated image.<br /><span class="parameter">file</span> The name of the PNG file.<br /><span class="parameter">width</span> The width of the PNG file.<br /><span class="parameter">height</span> The height of the PNG file.<br /><span class="parameter">data</span> The image data.<br /><span class="throws">throws</span> An error if the image has too many colors.<br /><br /><a name="63504E475F546F5F50696374757265436F6E766572745F546F5F504E47"></a> <h2>Convert_To_PNG(project, image, file)</h2> <br />Converts a PIC file to PNG format.<br /><span class="parameter">project</span> The name of the associated project.<br /><span class="parameter">image</span> The name of the associated image.<br /><span class="parameter">file</span> The name of the PIC file to convert.<br /><br /><a name="63504E475F546F5F5069637475726546696E645F53696D696C61725F436F6C6F72"></a> <h2>Find_Similar_Color(colors, red, green, blue)</h2> <br />Looks for a similar color in a list of colors<br /><span class="parameter">colors</span> The array of added colors.<br /><span class="parameter">red</span> The red component. <br /><span class="parameter">green</span> The green component.<br /><span class="parameter">blue</span> The blue component.<br /><span class="return">returns</span> The index of the color or -1 if no color was found.<br /><br />
+      </div>
+    </div>
+  </body>
+</html>

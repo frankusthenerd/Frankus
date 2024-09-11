@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image API</title>
+    <style type="text/css">
+      @import url("Coder_Doc.css");
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top_pane">
+        <h1 class="banner">API Documentation :: Image</h1>
+        <br />
+        <a href="Files.html">Files</a> :: Image API
+      </div>
+      <div class="left_pane">
+        <a href="#63496D616765">cImage</a><br />
+<a href="#63496D616765636F6E7374727563746F72">&nbsp;&nbsp;&rdsh;constructor</a><br />
+<a href="#63496D6167654C6F6164">&nbsp;&nbsp;&rdsh;Load</a><br />
+<a href="#63496D61676544726177">&nbsp;&nbsp;&rdsh;Draw</a><br />
+<a href="#63496D6167654765745F446174615F55524C">&nbsp;&nbsp;&rdsh;Get_Data_URL</a><br />
+<a href="#63496D61676546696C6C5F436F6C6F726564">&nbsp;&nbsp;&rdsh;Fill_Colored</a><br />
+      </div>
+      <div class="right_pane">
+        <a name="63496D616765"></a> <h1>cImage</h1><br />This is a reader for Frankus pictures. It also has the ability to read PNG<br />and JPEG files which cannot be converted to Frankus pictures.<br /><br /><a name="63496D616765636F6E7374727563746F72"></a> <h2>constructor()</h2> <br />Creates a new Frankus Picture reader.<br /><br /><a name="63496D6167654C6F6164"></a> <h2>Load(name)</h2> <br />Loads a Frankus picture by name.<br /><span class="parameter">name</span> The name of the Frankus picture to load.<br /><br /><a name="63496D61676544726177"></a> <h2>Draw(surface)</h2> <br />Draws the image to the surface of a canvas.<br /><span class="parameter">surface</span> The surface to draw to.<br /><br /><a name="63496D6167654765745F446174615F55524C"></a> <h2>Get_Data_URL()</h2> <br />Gets the data URL of a loaded image.<br /><span class="return">returns</span> The URL containing the base 64 string of the loaded image.<br /><br /><a name="63496D61676546696C6C5F436F6C6F726564"></a> <h2>Fill_Colored(x, y, width, height, color)</h2> <br />Fills a colored part of an the loaded image. The<br />color is as follows:<br /><code><pre><br />{<br />  red: 0,<br />  green: 0,<br />  blue: 0,<br />  alpha: 0.0<br />}<br /></pre></code><br /><span class="parameter">x</span> The x coordinate of the bounding box.<br /><span class="parameter">y</span> The y coordinate of the bounding box.<br /><span class="parameter">width</span> The width of the bounding box.<br /><span class="parameter">height</span> The height of the bounding box.<br /><span class="parameter">color</span> The filling color.<br /><span class="throws">throws</span> An error if the bounding box is invalid.<br /><br />
+      </div>
+    </div>
+  </body>
+</html>

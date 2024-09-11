@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project API</title>
+    <style type="text/css">
+      @import url("Coder_Doc.css");
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top_pane">
+        <h1 class="banner">API Documentation :: Project</h1>
+        <br />
+        <a href="Files.html">Files</a> :: Project API
+      </div>
+      <div class="left_pane">
+        <a href="#6350726F6A656374">cProject</a><br />
+<a href="#6350726F6A656374636F6E7374727563746F72">&nbsp;&nbsp;&rdsh;constructor</a><br />
+<a href="#6350726F6A6563745A6970">&nbsp;&nbsp;&rdsh;Zip</a><br />
+<a href="#6350726F6A6563745A69705F4370705F50726F6A656374">&nbsp;&nbsp;&rdsh;Zip_Cpp_Project</a><br />
+<a href="#6350726F6A6563745A69705F4A6176615363726970745F50726F6A656374">&nbsp;&nbsp;&rdsh;Zip_JavaScript_Project</a><br />
+<a href="#6350726F6A6563745A69705F456469746F72">&nbsp;&nbsp;&rdsh;Zip_Editor</a><br />
+<a href="#6350726F6A656374417263686976655F53697465">&nbsp;&nbsp;&rdsh;Archive_Site</a><br />
+<a href="#6350726F6A65637455706C6F61645F46696C65">&nbsp;&nbsp;&rdsh;Upload_File</a><br />
+<a href="#6350726F6A656374446F776E6C6F61645F46696C65">&nbsp;&nbsp;&rdsh;Download_File</a><br />
+<a href="#6350726F6A6563744372656174655F466F6C646572">&nbsp;&nbsp;&rdsh;Create_Folder</a><br />
+<a href="#6350726F6A6563744372656174655F506174685F46726F6D5F4E616D65">&nbsp;&nbsp;&rdsh;Create_Path_From_Name</a><br />
+<a href="#6350726F6A6563744372656174655F506174685F46726F6D5F55524C">&nbsp;&nbsp;&rdsh;Create_Path_From_URL</a><br />
+<a href="#6350726F6A65637455706C6F61645F46696C655F46726F6D5F4C697374">&nbsp;&nbsp;&rdsh;Upload_File_From_List</a><br />
+<a href="#6350726F6A656374446F776E6C6F61645F46696C655F46726F6D5F4C697374">&nbsp;&nbsp;&rdsh;Download_File_From_List</a><br />
+<a href="#6350726F6A65637451756572795F46696C6573">&nbsp;&nbsp;&rdsh;Query_Files</a><br />
+<a href="#6350726F6A6563744765745F46696C655F416E645F466F6C6465725F4C697374">&nbsp;&nbsp;&rdsh;Get_File_And_Folder_List</a><br />
+<a href="#6350726F6A65637451756572795F46726F6D5F466F6C64657273">&nbsp;&nbsp;&rdsh;Query_From_Folders</a><br />
+<a href="#6350726F6A6563745365745F436F6E666967">&nbsp;&nbsp;&rdsh;Set_Config</a><br />
+<a href="#6350726F6A6563745F4E657264">cProject_Nerd</a><br />
+<a href="#6350726F6A6563745F4E657264636F6E7374727563746F72">&nbsp;&nbsp;&rdsh;constructor</a><br />
+<a href="#6350726F6A6563745F4E6572644F6E5F496E74657270726574">&nbsp;&nbsp;&rdsh;On_Interpret</a><br />
+      </div>
+      <div class="right_pane">
+        <a name="6350726F6A656374"></a> <h1>cProject</h1><a name="6350726F6A656374636F6E7374727563746F72"></a> <h2>constructor(project)</h2> <br />Creates a new project tool.<br /><span class="parameter">name</span> The name of the project to manage.<br /><br /><a name="6350726F6A6563745A6970"></a> <h2>Zip(on_zip)</h2> <br />Creates a zip archive of project.<br /><span class="parameter">folder</span> The folder to archive.<br /><span class="parameter">on_zip</span> Called when the project is zipped.<br /><br /><a name="6350726F6A6563745A69705F4370705F50726F6A656374"></a> <h2>Zip_Cpp_Project(on_zip)</h2> <br />Creates a zip archive of a C++ project.<br /><span class="parameter">folder</span> The folder to archive.<br /><span class="parameter">on_zip</span> Called when the project is zipped.<br /><br /><a name="6350726F6A6563745A69705F4A6176615363726970745F50726F6A656374"></a> <h2>Zip_JavaScript_Project(on_zip)</h2> <br />Creates a zip archive of a C++ project.<br /><span class="parameter">folder</span> The folder to archive.<br /><span class="parameter">on_zip</span> Called when the project is zipped.<br /><br /><a name="6350726F6A6563745A69705F456469746F72"></a> <h2>Zip_Editor(on_zip)</h2> <br />Zips up the editor for use as standalone program.<br /><span class="parameter">on_zip</span> Called when the package is created.<br /><br /><a name="6350726F6A656374417263686976655F53697465"></a> <h2>Archive_Site(on_archive)</h2> <br />Archives the entire site. Drops the file in the download folder.<br /><span class="parameter">on_archive</span> Called when site is archived.<br /><br /><a name="6350726F6A65637455706C6F61645F46696C65"></a> <h2>Upload_File(name, on_upload, on_error)</h2> <br />Uploads a file to a server.<br /><span class="parameter">name</span> The name of the file to upload.<br /><span class="parameter">on_upload</span> Called when the file is uploaded.<br /><span class="parameter">on_error</span> Called if there was an error. A message is passed in.<br /><br /><a name="6350726F6A656374446F776E6C6F61645F46696C65"></a> <h2>Download_File(name, on_download, on_error)</h2> <br />Downloads a file from the server.<br /><span class="parameter">name</span> The name of the file to download.<br /><span class="parameter">on_download</span> Called when the file is downloaded.<br /><span class="parameter">on_error</span> Called if there was an error. A message is passed in.<br /><br /><a name="6350726F6A6563744372656174655F466F6C646572"></a> <h2>Create_Folder(folder, on_create, on_error)</h2> <br />Creates a folder on the server.<br /><span class="parameter">folder</span> The folder to create.<br /><span class="parameter">on_create</span> Called when the folder is created.<br /><span class="parameter">on_error</span> Called if there is an error. A message is passed in.<br /><br /><a name="6350726F6A6563744372656174655F506174685F46726F6D5F4E616D65"></a> <h2>Create_Path_From_Name(file, dirs)</h2> <br />Creates a folder from a file path.<br /><span class="parameter">file</span> The file to create the folder from.<br /><span class="parameter">dirs</span> A hash of created directories.<br /><br /><a name="6350726F6A6563744372656174655F506174685F46726F6D5F55524C"></a> <h2>Create_Path_From_URL(file, dirs, on_create)</h2> <br />Creates a path from a URL.<br /><span class="parameter">file</span> The file URL.<br /><span class="parameter">dirs</span> A hash of created directories.<br /><span class="parameter">on_create</span> Called when the path is created or not.<br /><br /><a name="6350726F6A65637455706C6F61645F46696C655F46726F6D5F4C697374"></a> <h2>Upload_File_From_List(files, index, dirs, on_upload)</h2> <br />Uploads a file from a list.<br /><span class="parameter">files</span> The list of files to upload.<br /><span class="parameter">index</span> The index of the file to upload.<br /><span class="parameter">dirs</span> The list of created folders.<br /><span class="parameter">on_upload</span> Called when the files have been uploaded.<br /><br /><a name="6350726F6A656374446F776E6C6F61645F46696C655F46726F6D5F4C697374"></a> <h2>Download_File_From_List(files, index, on_download)</h2> <br />Downloads a file from a list.<br /><span class="parameter">files</span> The list of files to download.<br /><span class="parameter">index</span> The index of the file to download.<br /><span class="parameter">on_download</span> Called when all files have been downloaded.<br /><br /><a name="6350726F6A65637451756572795F46696C6573"></a> <h2>Query_Files(folder, search, on_query, on_error)</h2> <br />Queries a list of files from the server.<br /><span class="parameter">folder</span> The folder to look in.<br /><span class="parameter">search</span> The search string.<br /><span class="parameter">on_query</span> Called when the files are queried with the file list passed in.<br /><span class="parameter">on_error</span> Called if there is an error. A message is passed in.<br /><br /><a name="6350726F6A6563744765745F46696C655F416E645F466F6C6465725F4C697374"></a> <h2>Get_File_And_Folder_List(folder, on_query)</h2> <br />Grabs a list of files and folders from the server.<br /><span class="parameter">folder</span> The folder to look in.<br /><span class="parameter">on_query</span> Called when all files and folders have been queried. File list is passed in.<br /><br /><a name="6350726F6A65637451756572795F46726F6D5F466F6C64657273"></a> <h2>Query_From_Folders(folders, index, on_query)</h2> <br />Queries file and folders from a folder list.<br /><span class="parameter">folders</span> The list of folders.<br /><span class="parameter">index</span> The index of the folder to query from.<br /><span class="parameter">on_query</span> Called when the list has been queried. File list is passed in.<br /><br /><a name="6350726F6A6563745365745F436F6E666967"></a> <h2>Set_Config(name)</h2> <br />Sets a new config file for the project.<br /><span class="parameter">name</span> The name of the config file.<br /><br /><a name="6350726F6A6563745F4E657264"></a> <h1>cProject_Nerd</h1><a name="6350726F6A6563745F4E657264636F6E7374727563746F72"></a> <h2>constructor(argv)</h2> <br />Creates a new project command line.<br /><span class="parameter">argv</span> Passed in command line arguments.<br /><br /><a name="6350726F6A6563745F4E6572644F6E5F496E74657270726574"></a> <h2>On_Interpret(op, params)</h2> 
+      </div>
+    </div>
+  </body>
+</html>

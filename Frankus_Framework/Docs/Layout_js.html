@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Layout API</title>
+    <style type="text/css">
+      @import url("Coder_Doc.css");
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top_pane">
+        <h1 class="banner">API Documentation :: Layout</h1>
+        <br />
+        <a href="Files.html">Files</a> :: Layout API
+      </div>
+      <div class="left_pane">
+        <a href="#634C61796F7574">cLayout</a><br />
+<a href="#634C61796F7574636F6E7374727563746F72">&nbsp;&nbsp;&rdsh;constructor</a><br />
+<a href="#634C61796F75744D61705F456C656D656E745F496473">&nbsp;&nbsp;&rdsh;Map_Element_Ids</a><br />
+<a href="#634C61796F75744372656174655F506167655F436F6E7461696E657273">&nbsp;&nbsp;&rdsh;Create_Page_Containers</a><br />
+<a href="#634C61796F757452656D61705F506167655F496473">&nbsp;&nbsp;&rdsh;Remap_Page_Ids</a><br />
+<a href="#634C61796F7574496E69745F47726964">&nbsp;&nbsp;&rdsh;Init_Grid</a><br />
+<a href="#634C61796F7574436C6561725F47726964">&nbsp;&nbsp;&rdsh;Clear_Grid</a><br />
+<a href="#634C61796F75744D61705F47726964">&nbsp;&nbsp;&rdsh;Map_Grid</a><br />
+<a href="#634C61796F757450617273655F47726964">&nbsp;&nbsp;&rdsh;Parse_Grid</a><br />
+<a href="#634C61796F757450617273655F4D61726B646F776E">&nbsp;&nbsp;&rdsh;Parse_Markdown</a><br />
+<a href="#634C61796F75744861735F456E74697479">&nbsp;&nbsp;&rdsh;Has_Entity</a><br />
+<a href="#634C61796F757450617273655F456E74697479">&nbsp;&nbsp;&rdsh;Parse_Entity</a><br />
+<a href="#634C61796F757450617273655F426F78">&nbsp;&nbsp;&rdsh;Parse_Box</a><br />
+<a href="#634C61796F757450617273655F4669656C64">&nbsp;&nbsp;&rdsh;Parse_Field</a><br />
+<a href="#634C61796F757450617273655F50616E656C">&nbsp;&nbsp;&rdsh;Parse_Panel</a><br />
+<a href="#634C61796F757450617273655F427574746F6E">&nbsp;&nbsp;&rdsh;Parse_Button</a><br />
+<a href="#634C61796F757450617273655F50726F70657274696573">&nbsp;&nbsp;&rdsh;Parse_Properties</a><br />
+<a href="#634C61796F757452656E6465725F456E746974696573">&nbsp;&nbsp;&rdsh;Render_Entities</a><br />
+<a href="#634C61796F75744C6F61645F4C61796F7574">&nbsp;&nbsp;&rdsh;Load_Layout</a><br />
+<a href="#634C61796F75744C6F61645F50616765">&nbsp;&nbsp;&rdsh;Load_Page</a><br />
+<a href="#634C61796F7574526573697A655F436F6E7461696E6572">&nbsp;&nbsp;&rdsh;Resize_Container</a><br />
+<a href="#634C61796F7574526573697A655F506167655F436F6E7461696E657273">&nbsp;&nbsp;&rdsh;Resize_Page_Containers</a><br />
+<a href="#634C61796F7574466C69705F50616765">&nbsp;&nbsp;&rdsh;Flip_Page</a><br />
+<a href="#634C61796F7574496E69745F4E617669676174696F6E5F48616E646C6572">&nbsp;&nbsp;&rdsh;Init_Navigation_Handler</a><br />
+<a href="#634C61796F7574496E69745F526573697A655F48616E646C6572">&nbsp;&nbsp;&rdsh;Init_Resize_Handler</a><br />
+<a href="#634C61796F75744164645F50616765">&nbsp;&nbsp;&rdsh;Add_Page</a><br />
+<a href="#634C61796F7574437265617465">&nbsp;&nbsp;&rdsh;Create</a><br />
+      </div>
+      <div class="right_pane">
+        <a name="634C61796F7574"></a> <h1>cLayout</h1><a name="634C61796F7574636F6E7374727563746F72"></a> <h2>constructor()</h2> <br />Creates a new Frankus layout engine.<br /><br /><a name="634C61796F75744D61705F456C656D656E745F496473"></a> <h2>Map_Element_Ids()</h2> <br />Grabs all elements by ID and creates references to them.<br /><br /><a name="634C61796F75744372656174655F506167655F436F6E7461696E657273"></a> <h2>Create_Page_Containers()</h2> <br />Creates page containers given that the page hash is populated.<br /><br /><a name="634C61796F757452656D61705F506167655F496473"></a> <h2>Remap_Page_Ids()</h2> <br />Remaps the IDs of the pages to containers.<br /><br /><a name="634C61796F7574496E69745F47726964"></a> <h2>Init_Grid(viewport_w, viewport_h)</h2> <br />Initializes the global parse grid.<br /><span class="parameter">viewport_w</span> The width of the viewport in pixels.<br /><span class="parameter">viewport_h</span> The height of the viewport in pixels.<br /><br /><a name="634C61796F7574436C6561725F47726964"></a> <h2>Clear_Grid()</h2> <br />Clears out the grid.<br /><br /><a name="634C61796F75744D61705F47726964"></a> <h2>Map_Grid()</h2> <br />Maps the grid out. This is used for debugging purposes to actually output<br />the grid itself.<br /><br /><a name="634C61796F757450617273655F47726964"></a> <h2>Parse_Grid(text)</h2> <br />Parses the grid given the layout text.<br /><span class="parameter">text</span> The text containing the layout.<br /><br /><a name="634C61796F757450617273655F4D61726B646F776E"></a> <h2>Parse_Markdown(text, container)</h2> <br />Parses the markdown stored in the grid.<br /><span class="parameter">text</span> The text containing the layout markdown.<br /><span class="parameter">container</span> The container to render the entities to.<br /><br /><a name="634C61796F75744861735F456E74697479"></a> <h2>Has_Entity()</h2> <br />Determines if there is an entity still on the grid.<br /><br /><a name="634C61796F757450617273655F456E74697479"></a> <h2>Parse_Entity()</h2> <br />Parses one entity from the grid and removes it. This entity is turned into<br />a component and a reference is generated with the component.<br /><br /><a name="634C61796F757450617273655F426F78"></a> <h2>Parse_Box(entity)</h2> <br />Parses a box entity.<br /><span class="parameter">entity</span> The entity which is being parsed. This will fill in with data.<br /><span class="throws">throws</span> String If any error was encountered during the parse.<br /><br /><a name="634C61796F757450617273655F4669656C64"></a> <h2>Parse_Field(entity)</h2> <br />Parses a field entity.<br /><span class="parameter">entity</span> The entity which is being parsed. This will fill in with data.<br /><span class="throws">throws</span> String If any error was encountered during the parse.<br /><br /><a name="634C61796F757450617273655F50616E656C"></a> <h2>Parse_Panel(entity)</h2> <br />Parses a panel entity.<br /><span class="parameter">entity</span> The entity which is being parsed. This will fill in with data.<br /><span class="throws">throws</span> String If any error was encountered during the parse.<br /><br /><a name="634C61796F757450617273655F427574746F6E"></a> <h2>Parse_Button(entity)</h2> <br />This parses the button entity.<br /><span class="parameter">entity</span> The entity which is being parsed. This will fill in with data.<br /><span class="throws">throws</span> String If any error was encountered during the parse.<br /><br /><a name="634C61796F757450617273655F50726F70657274696573"></a> <h2>Parse_Properties(text)</h2> <br />Parses all properties related to entities.<br /><span class="parameter">text</span> The text to parse into properties.<br /><span class="throws">throws</span> String If the property is not formatted correctly.<br /><br /><a name="634C61796F757452656E6465725F456E746974696573"></a> <h2>Render_Entities(container)</h2> <br />Renders all of the entities as components.<br /><span class="parameter">container</span> The container to render the entities to.<br /><br /><a name="634C61796F75744C6F61645F4C61796F7574"></a> <h2>Load_Layout(file, container, on_load)</h2> <br />Loads a layout from a file and renders it.<br /><span class="parameter">file</span> The file to load the layout from.<br /><span class="parameter">on_load</span> Called if the layout is parsed and rendered.<br /><br /><a name="634C61796F75744C6F61645F50616765"></a> <h2>Load_Page(index, on_load)</h2> <br />Loads a page in a list of pages.<br /><span class="parameter">index</span> The index of the page to load.<br /><span class="parameter">on_load</span> Called when all pages have been loaded.<br /><br /><a name="634C61796F7574526573697A655F436F6E7461696E6572"></a> <h2>Resize_Container(container)</h2> <br />Resizes a container according to the size of the browser window.<br /><span class="parameter">container</span> The container to resize.<br /><br /><a name="634C61796F7574526573697A655F506167655F436F6E7461696E657273"></a> <h2>Resize_Page_Containers()</h2> <br />Resizes all page containers in accordance with the window size.<br /><br /><a name="634C61796F7574466C69705F50616765"></a> <h2>Flip_Page(name)</h2> <br />Flips to a named page.<br /><span class="parameter">name</span> The name of the page to flip to.<br /><br /><a name="634C61796F7574496E69745F4E617669676174696F6E5F48616E646C6572"></a> <h2>Init_Navigation_Handler()</h2> <br />Initializes the navigation handler to deal with browser navigation buttons.<br /><br /><a name="634C61796F7574496E69745F526573697A655F48616E646C6572"></a> <h2>Init_Resize_Handler()</h2> <br />Initializes a handler to resize the page containers when the window resizes.<br /><br /><a name="634C61796F75744164645F50616765"></a> <h2>Add_Page(name, container, pause, resume, layout, mobile)</h2> <br />Adds a page to the layout for processing.<br /><span class="parameter">name</span> The name of the page.<br /><span class="parameter">container</span> The name of the page container.<br /><span class="parameter">pause</span> Callback for when page is paused.<br /><span class="parameter">resume</span> Callback for when page is resumed.<br /><span class="parameter">layout</span> The layout file name.<br /><span class="parameter">mobile</span> The mobile layout file name.<br /><br /><a name="634C61796F7574437265617465"></a> <h2>Create(page)</h2> <br />Creates the layout.<br /><span class="parameter">page</span> The name of the initial page to open.<br /><br />
+      </div>
+    </div>
+  </body>
+</html>

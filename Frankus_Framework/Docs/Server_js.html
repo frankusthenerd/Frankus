@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Server API</title>
+    <style type="text/css">
+      @import url("Coder_Doc.css");
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top_pane">
+        <h1 class="banner">API Documentation :: Server</h1>
+        <br />
+        <a href="Files.html">Files</a> :: Server API
+      </div>
+      <div class="left_pane">
+        <a href="#63536572766572">cServer</a><br />
+<a href="#63536572766572636F6E7374727563746F72">&nbsp;&nbsp;&rdsh;constructor</a><br />
+<a href="#63536572766572526561645F46696C65">&nbsp;&nbsp;&rdsh;Read_File</a><br />
+<a href="#6353657276657257726974655F46696C65">&nbsp;&nbsp;&rdsh;Write_File</a><br />
+<a href="#635365727665724C6F61645F526577726974655F52756C6573">&nbsp;&nbsp;&rdsh;Load_Rewrite_Rules</a><br />
+<a href="#635365727665724765745F55524C5F52657772697465">&nbsp;&nbsp;&rdsh;Get_URL_Rewrite</a><br />
+<a href="#6353657276657248616E646C655F52657175657374">&nbsp;&nbsp;&rdsh;Handle_Request</a><br />
+<a href="#63536572766572456E645F526573706F6E7365">&nbsp;&nbsp;&rdsh;End_Response</a><br />
+<a href="#635365727665725374617274">&nbsp;&nbsp;&rdsh;Start</a><br />
+<a href="#6353657276657253746F70">&nbsp;&nbsp;&rdsh;Stop</a><br />
+<a href="#63455F5365727669636573">cE_Services</a><br />
+<a href="#63455F5365727669636573636F6E7374727563746F72">&nbsp;&nbsp;&rdsh;constructor</a><br />
+<a href="#63455F53657276696365735A6970">&nbsp;&nbsp;&rdsh;Zip</a><br />
+<a href="#63455F53657276696365735A69705F4370705F50726F6A656374">&nbsp;&nbsp;&rdsh;Zip_Cpp_Project</a><br />
+<a href="#63455F53657276696365735A69705F4A6176615363726970745F50726F6A656374">&nbsp;&nbsp;&rdsh;Zip_JavaScript_Project</a><br />
+<a href="#63455F53657276696365735A69705F456469746F72">&nbsp;&nbsp;&rdsh;Zip_Editor</a><br />
+<a href="#63455F5365727669636573417263686976655F53697465">&nbsp;&nbsp;&rdsh;Archive_Site</a><br />
+<a href="#63455F5365727669636573436F6465725F446F63">&nbsp;&nbsp;&rdsh;Coder_Doc</a><br />
+<a href="#63455F53657276696365735465726D696E616C">&nbsp;&nbsp;&rdsh;Terminal</a><br />
+<a href="#63455F53657276696365734372656174655F466F6C646572">&nbsp;&nbsp;&rdsh;Create_Folder</a><br />
+<a href="#63455F536572766963657351756572795F46696C6573">&nbsp;&nbsp;&rdsh;Query_Files</a><br />
+<a href="#63455F536572766963657343616C6C">&nbsp;&nbsp;&rdsh;Call</a><br />
+      </div>
+      <div class="right_pane">
+        <a name="63536572766572"></a> <h1>cServer</h1><a name="63536572766572636F6E7374727563746F72"></a> <h2>constructor(name)</h2> <br />Creates a new server.<br /><span class="parameter">name</span> The name of the server.<br /><br /><a name="63536572766572526561645F46696C65"></a> <h2>Read_File(file, response, params)</h2> <br />Reads a file from the server.<br /><span class="parameter">file</span> The file to be processed.<br /><span class="parameter">response</span> The response to be populated.<br /><span class="parameter">params</span> Extra parameters passed to the file.<br /><span class="throws">throws</span> An error if the file type is not found in the MIME table.<br /><br /><a name="6353657276657257726974655F46696C65"></a> <h2>Write_File(file, response, params)</h2> <br />Writes a file to the server.<br /><span class="parameter">file</span> The file to write to the server.<br /><span class="parameter">response</span> The server response object.<br /><span class="parameter">params</span> The parameters passed to the file.<br /><br /><a name="635365727665724C6F61645F526577726974655F52756C6573"></a> <h2>Load_Rewrite_Rules(name)</h2> <br />Loads rewrite rules from a file.<br /><span class="parameter">name</span> The name of the file.<br /><span class="throws">throws</span> An error if the rewrite rules are not formatted correctly.<br /><br /><a name="635365727665724765745F55524C5F52657772697465"></a> <h2>Get_URL_Rewrite(file)</h2> <br />Gets the rewrite of a URL.<br /><span class="parameter">file</span> The file URL.<br /><span class="return">returns</span> The URL rewrite or the file if not found.<br /><br /><a name="6353657276657248616E646C655F52657175657374"></a> <h2>Handle_Request(request, response)</h2> <br />Handles a request from the server.<br /><span class="parameter">request</span> The request object that is passed in.<br /><span class="parameter">response</span> The response object that is passed in.<br /><span class="throws">throws</span> An error if something is wrong.<br /><br /><a name="63536572766572456E645F526573706F6E7365"></a> <h2>End_Response(status, message, response)</h2> <br />Ends a server response.<br /><span class="parameter">status</span> The status associated with response.<br /><span class="parameter">message</span> The message.<br /><span class="parameter">response</span> The server response.<br /><br /><a name="635365727665725374617274"></a> <h2>Start()</h2> <br />Starts the server.<br /><br /><a name="6353657276657253746F70"></a> <h2>Stop(on_stop)</h2> <br />Stops the server.<br /><span class="parameter">on_stop</span> Called when the server is stopped.<br /><br /><a name="63455F5365727669636573"></a> <h1>cE_Services</h1><a name="63455F5365727669636573636F6E7374727563746F72"></a> <h2>constructor(server)</h2> <br />Creates a new e-services object.<br /><span class="parameter">server</span> The server object.<br /><br /><a name="63455F53657276696365735A6970"></a> <h2>Zip(params, response)</h2> <br />Zips up a folder.<br /><span class="parameter">params</span> The parameters for the zip routine.<br /><span class="parameter">response</span> The server response.<br /><br /><a name="63455F53657276696365735A69705F4370705F50726F6A656374"></a> <h2>Zip_Cpp_Project(params, response)</h2> <br />Zips up a C++ project folder.<br /><span class="parameter">params</span> The parameters for the zip routine.<br /><span class="parameter">response</span> The server response.<br /><br /><a name="63455F53657276696365735A69705F4A6176615363726970745F50726F6A656374"></a> <h2>Zip_JavaScript_Project(params, response)</h2> <br />Zips up a C++ project folder.<br /><span class="parameter">params</span> The parameters for the zip routine.<br /><span class="parameter">response</span> The server response.<br /><br /><a name="63455F53657276696365735A69705F456469746F72"></a> <h2>Zip_Editor(params, response)</h2> <br />Zips up the editor.<br /><span class="parameter">params</span> The parameters for the zip routine.<br /><span class="parameter">response</span> The server response.<br /><br /><a name="63455F5365727669636573417263686976655F53697465"></a> <h2>Archive_Site(params, response)</h2> <br />Archives the whole site.<br /><span class="parameter">params</span> The parameters for the zip routine.<br /><span class="parameter">response</span> The server response.<br /><br /><a name="63455F5365727669636573436F6465725F446F63"></a> <h2>Coder_Doc(params, response)</h2> <br />Runs the Coder Doc documentation generator.<br /><span class="parameter">params</span> The parameters for Coder Doc.<br /><span class="parameter">response</span> The server response.<br /><br /><a name="63455F53657276696365735465726D696E616C"></a> <h2>Terminal(params, response)</h2> <br />Runs a terminal command.<br /><span class="parameter">params</span> The parameters for the terminal.<br /><span class="parameter">response</span> The server response.<br /><br /><a name="63455F53657276696365734372656174655F466F6C646572"></a> <h2>Create_Folder(params, response)</h2> <br />Creates a new folder if one does not exist.<br /><span class="parameter">params</span> The parameter object with the passed in folder.<br /><span class="parameter">response</span> The response object.<br /><br /><a name="63455F536572766963657351756572795F46696C6573"></a> <h2>Query_Files(params, response)</h2> <br />Queries a group of files in a directory or a group of folders.<br /><span class="parameter">params</span> The parameter object containing the folder and search.<br /><span class="parameter">response</span> The server response.<br /><br /><a name="63455F536572766963657343616C6C"></a> <h2>Call(name, params, response)</h2> <br />Calls a service by name.<br /><span class="parameter">name</span> The name of the service to call.<br /><span class="parameter">params</span> The parsed server parameters.<br /><span class="parameter">response</span> The server response.<br /><span class="throws">throws</span> An error if the service does not exist.<br /><br />
+      </div>
+    </div>
+  </body>
+</html>
