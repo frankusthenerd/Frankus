@@ -104,20 +104,3 @@ function Binary_To_Number(binary) { <- Indent 2 spaces.
 // Compile Nerd Implementation <- Name of section.
 // *****************************************************************************
 %
-
-@Project Dating@
-Project dating is important. That means if a project is old then it should be
-mentioned as out of date. Similarly a mature project should be labeled as mature.
-
-The follow example shows how to name a mature project:
-
-#mProject#
-
-The "m" indicates that the project is mature and should not be developed more.
-
-Here is an example of an out of date project:
-
-#oodProject#
-
-The "ood" means the project is out of date and the cold does not comply with
-current standards. However, the code should be used for reference.

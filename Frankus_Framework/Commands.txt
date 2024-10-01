@@ -58,3 +58,10 @@ Code Bank Command:
 Crypt Command:
   crypt encrypt <name> <password> <salt>
   crypt decrypt <name> <password> <salt>
+
+Book Command:
+  book create-book <name>
+  book create-article <name>
+
+Backup Command:
+  backup manual <drive>

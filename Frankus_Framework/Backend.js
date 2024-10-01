@@ -325,6 +325,11 @@ class cFile {
           }
         }
       }
+      else if (folders[folder_index] == "clear") {
+        while (new_folders.length > 0) { // Clear out entire contents of new_folders.
+          new_folders.pop();
+        }
+      }
       else {
         new_folders.push(folders[folder_index]);
       }
@@ -338,7 +343,7 @@ class cFile {
    * @return The path that is platform independent.
    */
   static Escape_Path(folder) {
-    return folder.replace(/(\/|\\|:)/g, path.sep);
+    return folder.replace(/(\/|\\)/g, path.sep);
   }
 
   /**
@@ -575,6 +580,14 @@ class cFile {
    */
   static Is_File_Name(file) {
     return file.match(/\w+\.\w+$/);
+  }
+
+  /**
+   * Determines if a file is a folder.
+   * @param file The name of the file.
+   */
+  static Is_Folder(file) {
+    return !file.match(/\w+\.\w+$/);
   }
 
 }
@@ -2014,7 +2027,7 @@ class cCoder_Doc {
       console.log("Copied file " + file + ".");
     }
     // Now process the files.
-    let files = cFile.Get_File_And_Folder_List("", [ "PNG_File" ]);
+    let files = cFile.Get_File_And_Folder_List("", [ "PNG_File", "Programming" ]);
     let file_count = files.length;
     let file_list = [];
     for (let file_index = 0; file_index < file_count; file_index++) {
@@ -3945,6 +3958,12 @@ class cFrankus_Shell {
    */
   constructor() {
     Frankus_Logo();
+  }
+
+  /**
+   * Runs the Frankus shell.
+   */
+  Run() {
     this.shell = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -3954,15 +3973,23 @@ class cFrankus_Shell {
     this.shell.on("line", function(line) {
       let args = line.split(/\s+/);
       if (args.length > 0) {
-        let result = cFrankus_Shell.Interpret(args, function() {
-          if (cFrankus_Shell.done) {
-            console.log("Done.");
-            component.shell.close();
-          }
-          else {
-            component.shell.prompt();
-          }
-        });
+        try {
+          // Do not allow certain commands.
+          Check_Condition(!args[0].match(/^server|daemon$/), "Blocking commands not allowed in interactive shell.");
+          cFrankus_Shell.Interpret(args, function() {
+            if (cFrankus_Shell.done) {
+              console.log("Done.");
+              component.shell.close();
+            }
+            else {
+              component.shell.prompt();
+            }
+          });
+        }
+        catch (error) {
+          console.log(error.message);
+          component.shell.prompt();
+        }
       }
     });
     this.shell.prompt();
@@ -4041,6 +4068,16 @@ class cFrankus_Shell {
       let crypt_command = new cCrypt_Command(args);
       crypt_command.on_done = on_done;
       crypt_command.Run();
+    }
+    else if (command == "book") {
+      let book_command = new cBook_Command(args);
+      book_command.Run();
+      on_done();
+    }
+    else if (command == "backup") {
+      let backup_command = new cBackup(args);
+      backup_command.Run();
+      on_done();
     }
     else if (command == "help") {
       let name = (args.length > 0) ? args.shift() : "";
@@ -4181,6 +4218,230 @@ class cCrypt_Command extends cCommand {
 }
 
 // *****************************************************************************
+// Book Implementation
+// *****************************************************************************
+
+class cBook_Command extends cCommand {
+
+  /**
+   * Creates a new book command.
+   * @param args The arguments passed in.
+   */
+  constructor(args) {
+    super(args);
+  }
+
+  On_Interpret(op, params) {
+    let status = "";
+    if (op == "create-book") {
+      let book_name = this.Get_Param(params, "Missing name of book.").replace(/\\s/g, " ");
+      try {
+        this.Scan_Book(book_name);
+      }
+      catch (error) {
+        console.log(error.message);
+      }
+    }
+    else if (op == "create-article") {
+      let article_name = this.Get_Param(params, "Missing article name.").replace(/\\s/g, "_");
+      try {
+        this.Scan_Article(article_name);
+      }
+      catch (error) {
+        console.log(error.message);
+      }
+    }
+    else {
+      status = "error";
+    }
+    return status;
+  }
+
+  /**
+   * Scans a books by name and converts it to an HTML file.
+   * @param name The name of the book.
+   * @throws An error if the book is not found.
+   */
+  Scan_Book(name) {
+    let topics_file = new cFile("Board\\Topics.txt", true);
+    let found = false;
+    topics_file.Read();
+    while (topics_file.Has_More_Lines()) {
+      let topic_record = topics_file.Get_Line().split(/:/);
+      if (topic_record.length == 3) {
+        let topic_name = topic_record[0];
+        let topic_hash = topic_record[1];
+        let active = topic_record[2];
+        if (topic_name.indexOf(name) != -1) { // Found!
+          let book_name = topic_name.replace(/\s/g, "_").replace(/\(|\)|\-/g, "");
+          let html_file = new cFile("Html\\" + book_name + ".html", true);
+          let thread_file = new cFile("Board\\Thread_" + topic_hash + ".txt", true);
+          thread_file.Read();
+          html_file.Add_Lines([
+            "<!DOCTYPE html>",
+            "<html>",
+            "<head>",
+            "<title>" + topic_name + "</title>",
+            "</head>",
+            "<body>"
+          ]);
+          while (thread_file.Has_More_Lines()) {
+            let thread_record = thread_file.Get_Line().split(/:/);
+            if (thread_record.length == 3) {
+              let post_name = thread_record[0];
+              let post_author = thread_record[1];
+              let post_hash = thread_record[2];
+              let post_file = new cFile("Board\\Post_" + post_hash + ".txt", true);
+              post_file.Read();
+              html_file.Add("<h1>" + post_name + "</h1>");
+              while (post_file.Has_More_Lines()) {
+                let line = post_file.Get_Line();
+                if (line.match(/picture/)) {
+                  let pic_url = line.replace(/^\s*/, "").replace(/\s*$/, "");
+                  let pair = pic_url.split("//");
+                  if (pair.length == 2) {
+                    let picture = pair[1];
+                    let pic_ext = cFile.Get_Extension(picture);
+                    let pic_file = new cFile("Upload\\" + picture, true);
+                    pic_file.Read_Binary();
+                    let pic_hash = pic_file.buffer.toString("base64");
+                    html_file.Add('<img src="data:image/' + pic_ext + ';base64,' + pic_hash + '" alt="Picture" />');
+                  }
+                }
+                else {
+                  html_file.Add(line);
+                }
+                html_file.Add("<br />");
+              }
+            }
+          }
+          html_file.Add_Lines([
+            "</body>",
+            "</html>"
+          ]);
+          html_file.Write();
+          found = true;
+          console.log("Converted " + topic_name + ".");
+          break;
+        }
+      }
+    }
+    if (!found) {
+      console.log("No book found under search string " + name + ".");
+    }
+  }
+
+  /**
+   * Scans an article by name for conversion to book.
+   * @param name The name of the article to scan.
+   * @throws An article if the book was not found.
+   */
+  Scan_Article(name) {
+    let article_file = new cFile("Wiki\\" + name + ".txt", true);
+    let html_file = new cFile("Html\\" + name + ".html", true);
+    article_file.Read();
+    html_file.Add_Lines([
+      "<!DOCTYPE html>",
+      "<html>",
+      "<head>",
+      "<title>" + name + "</title>",
+      "</head>",
+      "<body>"
+    ]);
+    if (article_file.error.length == 0) {
+      let html = Format(article_file.data);
+      let matches = html.match(/img\ssrc="[^"]+"/g);
+      let match_count = matches.length;
+      for (let match_index = 0; match_index < match_count; match_index++) {
+        let match = matches[match_index];
+        let pic_url = match.replace(/^img\ssrc="/, "").replace(/"$/, "");
+        let pic_ext = cFile.Get_Extension(pic_url);
+        let pic_file = new cFile(pic_url, true);
+        pic_file.Read_Binary();
+        if (pic_file.error.length == 0) {
+          let pic_hash = pic_file.buffer.toString("base64");
+          html = html.replace(pic_url, "data:image/" + pic_ext + ";base64," + pic_hash);
+        }
+      }
+      html_file.Add(html);
+    }
+    html_file.Add_Lines([
+      "</body>",
+      "</html>"
+    ]);
+    html_file.Write();
+  }
+
+}
+
+// *****************************************************************************
+// Backup Implementation
+// *****************************************************************************
+
+class cBackup extends cCommand {
+
+  /**
+   * Creates a new backup command.
+   * @param args The arguments passed into the command.
+   */
+  constructor(args) {
+    super(args);
+    this.config = new cConfig("Backup");
+    this.mod_table = new cConfig("Modified");
+  }
+
+  On_Interpret(op, params) {
+    let status = "";
+    if (op == "manual") {
+      let drive = this.Get_Param(params, "Missing drive.");
+      this.Backup_Files(drive);
+    }
+    else {
+      status = "error";
+    }
+  }
+
+  /**
+   * Backs up a list of files to a drive.
+   * @param drive The drive to back up to.
+   */
+  Backup_Files(drive) {
+    let root = this.config.Get_Property("root");
+    let files = cFile.Get_File_And_Folder_List("clear/" + root);
+    let file_count = files.length;
+    cFile.Create_Folder("clear/" + drive + "/Frankus");
+    for (let file_index = 0; file_index < file_count; file_index++) {
+      let file = files[file_index];
+      let dest = file.replace(root, drive + "/Frankus");
+      if (cFile.Is_Folder(file)) {
+        cFile.Create_Folder(dest);
+        console.log("Created folder " + file + ".");
+      }
+      else {
+        try {
+          let table_mtime = this.mod_table.Get_Property(file);
+          let current_mtime = cFile.Get_File_Modified_Time(file);
+          if (table_mtime != current_mtime) {
+            this.mod_table.Set_Property(file, current_mtime);
+            this.mod_table.Save();
+            cFile.Copy_File(file, dest);
+            console.log("Copied " + file + " to " + dest + ".");
+          }
+        }
+        catch (error) {
+          let mtime = cFile.Get_File_Modified_Time(file);
+          this.mod_table.Set_Property(file, mtime);
+          this.mod_table.Save();
+          cFile.Copy_File(file, dest);
+          console.log("Copied " + file + " to " + dest + ".");
+        }
+      }
+    }
+  }
+
+}
+
+// *****************************************************************************
 // Utility Functions
 // *****************************************************************************
 
@@ -4253,20 +4514,20 @@ function Format(text) {
              .replace(/%{2}/g, "&percnt;")
              .replace(/\^{2}/g, "&Hat;")
              .replace(/\|{2}/g, "&vert;")
-             .replace(/@param\s+(\w+)/g, '<span class="parameter">$1</span>')
-             .replace(/@return/g, '<span class="return">returns</span>')
-             .replace(/@throws/g, '<span class="throws">throws</span>')
-             .replace(/@see\s+(\w+:?\w*)/g, '<span class="see">see</span> <a href="hash=$1">$1</a>')
              .replace(/#([^#]+)#/g, "<b>$1</b>")
              .replace(/\*([^*]+)\*/g, "<i>$1</i>")
              .replace(/@([^@]+)@/g, "<h1>$1</h1>")
              .replace(/\$([^$]+)\$/g, "<h2>$1</h2>")
              .replace(/\^([^\^]+)\^/g, '<div class="table_head">$1</div>')
              .replace(/\|([^\|]+)\|/g, '<div class="table_data">$1</div>')
-             .replace(/%([^%]+)%/g, "<code><pre>$1</pre></code>")
+             .replace(/%([^%]+)%/g, '<div class="code"><pre>$1</pre></div>')
+             .replace(/`([^`]+)`/g, "<!-- $1 -->")
              .replace(/(http:\/\/\S+|https:\/\/\S+)/g, '<a href="$1" target="_blank">$1</a>')
-             .replace(/image:\/\/(\S+)/g, '<img src="$1" />')
-             .replace(/anchor:\/\/(\S+)/g, '<a name="$1"></a>')
+             .replace(/image:\/\/(\S+)/g, '<img src="Pictures/$1" alt="Image" />')
+             .replace(/picture:\/\/(\S+)/g, '<img src="Upload/$1" alt="Picture" />')
+             .replace(/progress:\/\/(\d+)/g, '<div class="progress"><div class="percent_complete" style="width: $1%;">$1% Complete</div></div>')
+             .replace(/video:\/\/(\S+)/g, '<iframe width="560" height="315" src="https://www.youtube.com/embed/$1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
+             .replace(/download:\/\/(\S+)/g, '<a href="Upload/$1">$1</a>')
              .replace(/\r\n|\r|\n/g, "<br />");
 }
 
@@ -4404,6 +4665,7 @@ module.exports = {
   cE_Services: cE_Services,
   cFrankus_Shell: cFrankus_Shell,
   cCrypt: cCrypt,
+  cBackup: cBackup,
   Split: Split,
   Check_Condition: Check_Condition,
   String_To_Hex: String_To_Hex,
@@ -4423,8 +4685,14 @@ if (process.argv.length > 2) {
   let option = args.shift();
   if (option == "-interactive") {
     let frankus_shell = new cFrankus_Shell();
+    frankus_shell.Run();
   }
   else if (option == "-once") {
-    cFrankus_Shell.Interpret(args);
+    cFrankus_Shell.Interpret(args, function() {
+      console.log("Done.");
+    });
+  }
+  else {
+    console.log("Invalid switch.");
   }
 }

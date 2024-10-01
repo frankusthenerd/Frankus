@@ -3451,6 +3451,13 @@ class cWiki extends cComponent {
     let image_count = images.length;
     for (let image_index = 0; image_index < image_count; image_index++) {
       let image = images[image_index];
+      image.onload = function(event) {
+        let img = event.target;
+        if (img.width > container.clientWidth) {
+          img.setAttribute("class", "Wiki_Image");
+          img.frankus_resizable = true;
+        }
+      };
       let url = image.src;
       if (!url.match(/png|jpg/)) { // Leave PNG or JPEG images alone.
         this.Load_Image_Element(url, image);
@@ -7809,6 +7816,8 @@ class cBoard extends cComponent {
         }, component.entity.id + "_topic_area");
         // Attach post ID.
         component.elements[component.entity.id + "_edit_post_" + index].frankus_post_id = post_id;
+        // Load the post images for processing.
+        component.Load_Post_Images(post_board);
         // Handle edit click event.
         component.elements[component.entity.id + "_edit_post_" + index].addEventListener("click", function(event) {
           if (!component.rendering) {
@@ -8168,6 +8177,29 @@ class cBoard extends cComponent {
       }
       if (topic_post.value.length == 0) {
         topic_post.focus();
+      }
+    }
+  }
+
+  /**
+   * Loads all images of the post. Focuses on Frankus pictures.
+   * @param container The associated post container.
+   */
+  Load_Post_Images(container) {
+    let images = container.getElementsByTagName("img");
+    let image_count = images.length;
+    for (let image_index = 0; image_index < image_count; image_index++) {
+      let image = images[image_index];
+      image.onload = function(event) {
+        let img = event.target;
+        if (img.width > container.clientWidth) {
+          img.setAttribute("class", "Wiki_Image");
+          img.frankus_resizable = true;
+        }
+      };
+      let url = image.src;
+      if (!url.match(/png|jpg/)) { // Leave PNG or JPEG images alone.
+        this.Load_Image_Element(url, image);
       }
     }
   }
@@ -11007,11 +11039,11 @@ function Format(text) {
              .replace(/\$([^$]+)\$/g, "<h2>$1</h2>")
              .replace(/\^([^\^]+)\^/g, '<div class="table_head">$1</div>')
              .replace(/\|([^\|]+)\|/g, '<div class="table_data">$1</div>')
-             .replace(/%([^%]+)%/g, "<code><pre>$1</pre></code>")
+             .replace(/%([^%]+)%/g, '<div class="code"><pre>$1</pre></div>')
              .replace(/`([^`]+)`/g, "<!-- $1 -->")
              .replace(/(http:\/\/\S+|https:\/\/\S+)/g, '<a href="$1" target="_blank">$1</a>')
-             .replace(/image:\/\/(\S+)/g, '<img src="Pictures/$1" />')
-             .replace(/picture:\/\/(\S+)/g, '<img src="Upload/$1" />')
+             .replace(/image:\/\/(\S+)/g, '<img src="Pictures/$1" onclick="Resize_Image(this)" alt="Image" />')
+             .replace(/picture:\/\/(\S+)/g, '<img src="Upload/$1" onclick="Resize_Image(this)" alt="Picture" />')
              .replace(/progress:\/\/(\d+)/g, '<div class="progress"><div class="percent_complete" style="width: $1%;">$1% Complete</div></div>')
              .replace(/video:\/\/(\S+)/g, '<iframe width="560" height="315" src="https://www.youtube.com/embed/$1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
              .replace(/download:\/\/(\S+)/g, '<a href="Upload/$1">$1</a>')
@@ -11094,4 +11126,20 @@ function Exclude_Object_Properties(object, properties) {
     }
   }
   return object_without_excluded;
+}
+
+/**
+ * Resizes an image when clicked. It can be larger or smaller.
+ * @param image The associated image.
+ */
+function Resize_Image(image) {
+  if (image.frankus_resizable) { // Resize images larger than 600 pixels.
+    let class_name = image.getAttribute("class");
+    if (class_name == "Wiki_Image") {
+      image.setAttribute("class", "");
+    }
+    else {
+      image.setAttribute("class", "Wiki_Image");
+    }
+  }
 }

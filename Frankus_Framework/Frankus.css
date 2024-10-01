@@ -201,6 +201,38 @@ input[type="Range"]::-webkit-slider-thumb {
 }
 
 /*****************************************************************************/
+/* Code Box                                                                  */
+/*****************************************************************************/
+
+.code {
+  position: relative;
+  width: 626px;
+  height: 456px;
+  background-image: url("Images/Laptop.png");
+}
+
+.code pre {
+  position: absolute;
+  left: 63px;
+  top: 26px;
+  width: 498px;
+  height: 332px;
+  font-size: 12px;
+  padding: 10px;
+  box-sizing: border-box;
+  color: white;
+  overflow: scroll;
+}
+
+/*****************************************************************************/
+/* Wiki Image                                                                */
+/*****************************************************************************/
+
+.Wiki_Image {
+  width: 90%;
+}
+
+/*****************************************************************************/
 /* Frankus Editor Syntax Highlighting                                        */
 /*****************************************************************************/
 

@@ -1,0 +1,7 @@
+{
+  "name": "frankus_editor",
+  "version": "1.0",
+  "description": "The Frankus editor.",
+  "main": "Electron.js",
+  "author": "Frankus the Nerd"
+}
