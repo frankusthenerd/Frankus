@@ -4237,6 +4237,7 @@ class cBook_Command extends cCommand {
       let book_name = this.Get_Param(params, "Missing name of book.").replace(/\\s/g, " ");
       try {
         this.Scan_Book(book_name);
+        console.log("Created book.");
       }
       catch (error) {
         console.log(error.message);
@@ -4246,6 +4247,7 @@ class cBook_Command extends cCommand {
       let article_name = this.Get_Param(params, "Missing article name.").replace(/\\s/g, "_");
       try {
         this.Scan_Article(article_name);
+        console.log("Created article.");
       }
       catch (error) {
         console.log(error.message);
@@ -4351,16 +4353,18 @@ class cBook_Command extends cCommand {
     if (article_file.error.length == 0) {
       let html = Format(article_file.data);
       let matches = html.match(/img\ssrc="[^"]+"/g);
-      let match_count = matches.length;
-      for (let match_index = 0; match_index < match_count; match_index++) {
-        let match = matches[match_index];
-        let pic_url = match.replace(/^img\ssrc="/, "").replace(/"$/, "");
-        let pic_ext = cFile.Get_Extension(pic_url);
-        let pic_file = new cFile(pic_url, true);
-        pic_file.Read_Binary();
-        if (pic_file.error.length == 0) {
-          let pic_hash = pic_file.buffer.toString("base64");
-          html = html.replace(pic_url, "data:image/" + pic_ext + ";base64," + pic_hash);
+      if (matches) {
+        let match_count = matches.length;
+        for (let match_index = 0; match_index < match_count; match_index++) {
+          let match = matches[match_index];
+          let pic_url = match.replace(/^img\ssrc="/, "").replace(/"$/, "");
+          let pic_ext = cFile.Get_Extension(pic_url);
+          let pic_file = new cFile(pic_url, true);
+          pic_file.Read_Binary();
+          if (pic_file.error.length == 0) {
+            let pic_hash = pic_file.buffer.toString("base64");
+            html = html.replace(pic_url, "data:image/" + pic_ext + ";base64," + pic_hash);
+          }
         }
       }
       html_file.Add(html);
