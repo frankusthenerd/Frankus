@@ -4284,8 +4284,19 @@ class cBook_Command extends cCommand {
             "<html>",
             "<head>",
             "<title>" + topic_name + "</title>",
+            '<style type="text/css">'
+          ]);
+          let css_file = new cFile("Frankus.css", true);
+          css_file.Read();
+          if (css_file.error.length == 0) {
+            html_file.Add_Lines(css_file.lines);
+          }
+          html_file.Add_Lines([
+            ".container { overflow: scroll; }",
+            "</style>",
             "</head>",
-            "<body>"
+            "<body>",
+            '<div class="container">'
           ]);
           while (thread_file.Has_More_Lines()) {
             let thread_record = thread_file.Get_Line().split(/:/);
@@ -4318,6 +4329,7 @@ class cBook_Command extends cCommand {
             }
           }
           html_file.Add_Lines([
+            "</div>",
             "</body>",
             "</html>"
           ]);
@@ -4347,8 +4359,19 @@ class cBook_Command extends cCommand {
       "<html>",
       "<head>",
       "<title>" + name + "</title>",
+      '<style type="text/css">'
+    ]);
+    let css_file = new cFile("Frankus.css", true);
+    css_file.Read();
+    if (css_file.error.length == 0) {
+      html_file.Add_Lines(css_file.lines);
+    }
+    html_file.Add_Lines([
+      ".container { overflow: scroll; }",
+      "</style>",
       "</head>",
-      "<body>"
+      "<body>",
+      '<div class="container">'
     ]);
     if (article_file.error.length == 0) {
       let html = Format(article_file.data);
@@ -4370,6 +4393,7 @@ class cBook_Command extends cCommand {
       html_file.Add(html);
     }
     html_file.Add_Lines([
+      "</div>",
       "</body>",
       "</html>"
     ]);
