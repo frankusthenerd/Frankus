@@ -4286,14 +4286,22 @@ class cBook_Command extends cCommand {
             "<title>" + topic_name + "</title>",
             '<style type="text/css">'
           ]);
-          let css_file = new cFile("Frankus.css", true);
-          css_file.Read();
+          let css_file = this.Process_CSS_File();
           if (css_file.error.length == 0) {
             html_file.Add_Lines(css_file.lines);
           }
           html_file.Add_Lines([
             ".container { overflow: scroll; }",
+            "body { overflow: scroll; }",
             "</style>",
+            '<script type="text/javascript">',
+            "function Print_HTML() {",
+            "  let container = document.body.children[0];",
+            '  let html_win = open("");',
+            "  html_win.document.children[0].children[0].innerHTML = document.children[0].children[0].innerHTML;",
+            "  html_win.document.body.innerHTML = container.innerHTML;",
+            "}",
+            "</script>",
             "</head>",
             "<body>",
             '<div class="container">'
@@ -4326,10 +4334,14 @@ class cBook_Command extends cCommand {
                 }
                 html_file.Add("<br />");
               }
+              html_file.Add("<br />");
+              html_file.Add("<hr />");
+              html_file.Add("<br />");
             }
           }
           html_file.Add_Lines([
             "</div>",
+            '<div class="button" onclick="Print_HTML()">Print</div>',
             "</body>",
             "</html>"
           ]);
@@ -4361,14 +4373,22 @@ class cBook_Command extends cCommand {
       "<title>" + name + "</title>",
       '<style type="text/css">'
     ]);
-    let css_file = new cFile("Frankus.css", true);
-    css_file.Read();
+    let css_file = this.Process_CSS_File();
     if (css_file.error.length == 0) {
       html_file.Add_Lines(css_file.lines);
     }
     html_file.Add_Lines([
       ".container { overflow: scroll; }",
+      "body { overflow: scroll; }",
       "</style>",
+      '<script type="text/javascript">',
+      "function Print_HTML() {",
+      "  let container = document.body.children[0];",
+      '  let html_win = open("");',
+      "  html_win.document.children[0].children[0].innerHTML = document.children[0].children[0].innerHTML;",
+      "  html_win.document.body.innerHTML = container.innerHTML;",
+      "}",
+      "</script>",
       "</head>",
       "<body>",
       '<div class="container">'
@@ -4394,10 +4414,42 @@ class cBook_Command extends cCommand {
     }
     html_file.Add_Lines([
       "</div>",
+      '<div class="button" onclick="Print_HTML()">Print</div>',
       "</body>",
       "</html>"
     ]);
     html_file.Write();
+  }
+  
+  /**
+   * Processes the images and fonts in the CSS file.
+   * @return The CSS file object.
+   */
+  Process_CSS_File() {
+    let css_file = new cFile("Frankus.css", true);
+    css_file.Read();
+    if (css_file.error.length == 0) {
+      let html = css_file.data;
+      let matches = html.match(/url\("[^"]+"/g);
+      if (matches) {
+        let match_count = matches.length;
+        for (let match_index = 0; match_index < match_count; match_index++) {
+          let match = matches[match_index];
+          let res_url = match.replace(/^url\("/, "").replace(/"$/, "");
+          let res_ext = cFile.Get_Extension(res_url);
+          let res_file = new cFile(res_url, true);
+          res_file.Read_Binary();
+          if (res_file.error.length == 0) {
+            let res_hash = res_file.buffer.toString("base64");
+            let mime_type = (res_ext == "png") ? "image" : "font";
+            html = html.replace(res_url, "data:" + mime_type + "/" + res_ext + ";base64," + res_hash);
+          }
+        }
+      }
+      css_file.data = html;
+      css_file.lines = Split(html);
+    }
+    return css_file;
   }
 
 }
@@ -4556,6 +4608,7 @@ function Format(text) {
              .replace(/progress:\/\/(\d+)/g, '<div class="progress"><div class="percent_complete" style="width: $1%;">$1% Complete</div></div>')
              .replace(/video:\/\/(\S+)/g, '<iframe width="560" height="315" src="https://www.youtube.com/embed/$1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
              .replace(/download:\/\/(\S+)/g, '<a href="Upload/$1">$1</a>')
+             .replace(/\[ruler\]/g, "<hr />")
              .replace(/\r\n|\r|\n/g, "<br />");
 }
 
