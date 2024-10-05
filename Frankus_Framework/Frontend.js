@@ -11047,6 +11047,8 @@ function Format(text) {
              .replace(/progress:\/\/(\d+)/g, '<div class="progress"><div class="percent_complete" style="width: $1%;">$1% Complete</div></div>')
              .replace(/video:\/\/(\S+)/g, '<iframe width="560" height="315" src="https://www.youtube.com/embed/$1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
              .replace(/download:\/\/(\S+)/g, '<a href="Upload/$1">$1</a>')
+             .replace(/\[ruler\]/g, "<hr />")
+             .replace(/\[page\-break\]/g, '<div class="page-break"></div>')
              .replace(/\r\n|\r|\n/g, "<br />");
 }
 
